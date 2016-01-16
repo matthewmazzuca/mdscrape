@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 import scrapy
 
+from webmd.items import WebmdItem
+
 
 class SymscrapeSpider(scrapy.Spider):
     name = "symscrape"
@@ -12,13 +14,17 @@ class SymscrapeSpider(scrapy.Spider):
 
     def parse(self, response):
 
-
-
-    	sites = response.xpath('//div[@class="a-to-z list"]/ul/li').extract()
+    	sel = selector.Selector(response)
+		sites = sel.xpath('//div[@class="a-to-z list"]/ul/li').extract()
     	items = []
 
     	for site in sites:
-    		print site + '\n'
+    		item = WebmdItem()
+    		item['name']= site.xpath('a/text()').extract()
+    		item['url']=site.xpath('a/@href').extract()
+    		items.append(item)
+
+    	print items
 
     	 
 

@@ -13,6 +13,7 @@ class WebmdItem(scrapy.Item):
     # name = scrapy.Field()
 
     name = scrapy.Field()
-    desc = scrapy.Field()
-    
+    url = scrapy.Field()
+    # desc = scrapy.Field()
+
     pass

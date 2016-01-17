@@ -14,9 +14,8 @@ class SymscrapeSpider(scrapy.Spider):
 
     def parse(self, response):
 
-    	sel = selector.Selector(response)
-		sites = sel.xpath('//div[@class="a-to-z list"]/ul/li').extract()
-    	items = []
+    	sites = response.selector.xpath('//div[@class="a-to-z list"]/ul/li')
+        items= []
 
     	for site in sites:
     		item = WebmdItem()

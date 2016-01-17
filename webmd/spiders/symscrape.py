@@ -41,8 +41,8 @@ class SymscrapeSpider(scrapy.Spider):
     		item['url']=site.xpath('a/@href').extract()
     		items.append(item)
 
-    	print items
+    	return items
 
     	 
 
-        pass
+        
